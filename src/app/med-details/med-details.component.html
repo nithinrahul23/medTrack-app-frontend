@@ -1,0 +1,92 @@
+<div class="container-fluid margintop">
+    <div class="card">
+        <div class="card-header bg bg-success" style="text-align: center;">
+            <h4>Add New Medcine Details</h4>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="mediForm">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Medicine Name :</label>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" formControlName="medicineName"
+                                            placeholder="Add medicine name...">
+                                        <p *ngIf="f['medicineName'].errors?.['required'] && f['medicineName'].touched"
+                                            class="alert alert-danger">This field is required!</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="medicineType">Medicine Type : </label>
+                                    <div class="col-md-7">
+                                        <select formControlName="medicineType" id="medicineType" class="col-md-12">
+                                            <option value="" disabled selected>Select Medicine Type </option>
+                                            <option *ngFor="let mediType of mediTypes" [value]="mediType">{{mediType}}
+                                            </option>
+                                        </select>
+                                        <p *ngIf="f['medicineType'].errors?.['required'] && f['medicineType'].touched"
+                                            class="alert alert-danger">This field is required!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="margintop">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Expiry Date :</label>
+                                        <div class="col-md-7">
+                                            <input type="date" class="form-control" formControlName="expiryDate">
+                                            <p *ngIf="f['expiryDate'].errors?.['required'] && f['expiryDate'].touched"
+                                                class="alert alert-danger">This field is required!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Total Quantity :</label>
+                                        <div class="col-md-7">
+                                            <input type="number" class="form-control" formControlName="totalQuantity">
+                                            <p *ngIf="f['totalQuantity'].errors?.['required'] && f['totalQuantity'].touched"
+                                                class="alert alert-danger">This field is required!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="margintop">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Price :</label>
+                                        <div class="col-md-7">
+                                            <input type="number" class="form-control" formControlName="price">
+                                            <p *ngIf="f['price'].errors?.['required'] && f['price'].touched"
+                                                class="alert alert-danger">This field is required!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="margintop">
+                            <div class="row">
+                                <div class="offset-md-5">
+                                    <button class="btn btn-success" (click)="addMedicineDetails()"
+                                        [disabled]="mediForm.invalid">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form><br>
+            <div *ngIf="errorMessage!=null">
+                <span class="text-danger">{{errorMessage}}</span>
+            </div>
+        </div>
+    </div>
+</div>

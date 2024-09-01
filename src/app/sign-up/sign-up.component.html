@@ -1,0 +1,59 @@
+<div class="container" style="margin: 50px;">
+    <div class="row">
+        <div class="offset-md-4 col-md-5">
+            <div class="card d-block h-100 box-shadow-hover pointer" >
+                <div class="card-header bg bg-info text-dark">
+                    <h1>Registration Form</h1>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="signUpForm">
+                        <div class="form-group">
+                            <label>User Name</label>
+                            <input type="text" class="form-control" formControlName="userName">
+                            <p *ngIf="f['userName'].errors?.['required'] && f['userName'].touched"
+                                class="alert alert-danger">This field is required!</p>
+                        </div><br>
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" formControlName="firstName">
+                            <p *ngIf="f['firstName'].errors?.['required'] && f['firstName'].touched"
+                                class="alert alert-danger">This field is required!</p>
+                        </div><br>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" formControlName="lastName">
+                            <p *ngIf="f['lastName'].errors?.['required'] && f['lastName'].touched"
+                                class="alert alert-danger">This field is required!</p>
+                        </div><br>
+                        <div class="form-group">
+                            <label>Email Id</label>
+                            <input type="text" class="form-control" formControlName="emailId">
+                            <p *ngIf="f['emailId'].errors?.['required'] && f['emailId'].touched && f['emailId'].invalid"
+                                class="alert alert-danger">
+                                This field is required!</p>
+                            <p *ngIf="f['emailId'].errors?.['emailError'] && f['emailId'].dirty "
+                                class="alert alert-danger">
+                                {{f['emailId']!.errors!['emailError'].message}}
+                            </p>
+                        </div><br>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" formControlName="password">
+                            <p *ngIf="f['password'].errors?.['required'] && f['password'].touched"
+                                class="alert alert-danger">This field is required!</p>
+                            <p *ngIf="f['password'].errors?.['pattern']" class="alert alert-danger">Password must be at least 8 characters including a lowercase letter, an uppercase letter, a number and a specialcase character("#?!@$%^&*-").
+                            </p>
+                        </div><br>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-info" (click)="register()"  [disabled]="signUpForm.invalid">Submit</button>
+                        </div>
+                    </form>
+                    <br><br>
+                    <div *ngIf="errorMessage!=null">
+                        <span class="text-danger">{{errorMessage}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
